@@ -143,5 +143,4 @@ The following diagram illustrates the high-level AWS infrastructure and Terrafor
 - [AWS SSM Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html)
 - [AWS ALB Documentation](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html)
 
-Use a repository on www.github.com to manage all the code parts of the assignment and provide instructions on how to consume the repository.
-s
+
