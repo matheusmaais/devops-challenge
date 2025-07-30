@@ -129,6 +129,12 @@ The following diagram illustrates the high-level AWS infrastructure and Terrafor
 - Enable HTTPS on the ALB for encrypted traffic.
 - Add WAF (Web Application Firewall) for extra protection.
 - Use SSM Parameter Store or Secrets Manager for managing secrets.
+- **Add a Firewall VM in front of the ALB:**
+    - For advanced traffic inspection or compliance, you may add a firewall VM (e.g., pfSense, FortiGate, NGFW) as a reverse proxy in front of the ALB.
+    - In this pattern, the firewall VM receives all inbound traffic from the internet, inspects/filters it, and then forwards allowed traffic to the ALB (which should be made internal/private).
+    - Your public DNS (e.g., app.example.com) should point to the Elastic IP of the firewall VM, not directly to the ALB DNS.
+    - This requires architectural changes: the ALB must be private, and the firewall VM must be highly available and able to forward traffic to the ALB.
+    - For most HTTP(S) use cases, consider AWS WAF as a managed alternative.
 
 ---
 
