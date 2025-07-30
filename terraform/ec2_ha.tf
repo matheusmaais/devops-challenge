@@ -19,6 +19,15 @@ resource "aws_launch_template" "app" {
   user_data = base64encode(<<-EOF
   #!/bin/bash
   set -e
+  for i in {1..12}; do
+  if curl -s --head http://archive.ubuntu.com/ubuntu/ | grep "200 OK" > /dev/null; then
+    echo "Connection OK"
+    break
+  else
+    echo "Waiting for network connection..."
+    sleep 5
+  fi
+  done
   apt-get update -y
   apt-get install -y docker.io
   systemctl enable docker
@@ -31,6 +40,7 @@ EOF
 
 # Auto Scaling Group across private subnets (HA)
 resource "aws_autoscaling_group" "app" {
+  depends_on = [ module.vpc ]
   name                = "app-ha-asg"
   min_size            = 2
   max_size            = 4
