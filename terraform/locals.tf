@@ -11,7 +11,6 @@ locals {
   azs      = ["us-east-1a", "us-east-1b"]
   vpc_cidr = "10.0.0.0/24"
 
-  # Each /26 subnet provides 64 IPs; here we use 2 AZs for each tier
   private_subnets = [
     "10.0.0.0/26", # 10.0.0.0 - 10.0.0.63
     "10.0.0.64/26" # 10.0.0.64 - 10.0.0.127

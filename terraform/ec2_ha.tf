@@ -1,6 +1,5 @@
 # High Availability EC2 deployment with Auto Scaling Group and Application Load Balancer
 # Launch template for EC2 instances (using SSM, no SSH key)
-
 resource "aws_launch_template" "app" {
   name_prefix   = "app-ha-"
   image_id      = data.aws_ami.ubuntu.id
